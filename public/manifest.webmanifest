@@ -1,0 +1,40 @@
+{
+  "id": "/",
+  "name": "স্মার্ট শিশু শিক্ষা - Smart Shishu Shikkha",
+  "short_name": "শিশু শিক্ষা",
+  "description": "শিশুদের সহজ, আনন্দময় ও ইন্টারঅ্যাকটিভ পদ্ধতিতে পড়াশোনা শিখতে সাহায্য করার জন্য তৈরি একটি শিক্ষামূলক অ্যাপ।",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F0FDF4",
+  "theme_color": "#10B981",
+  "categories": ["education", "kids"],
+  "lang": "bn",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "বাংলা শেখা",
+      "short_name": "বাংলা",
+      "url": "/?tab=bengali",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "মজার গণিত",
+      "short_name": "গণিত",
+      "url": "/?tab=math",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "AI শিক্ষক",
+      "short_name": "AI শিক্ষক",
+      "url": "/?tab=ai",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}
