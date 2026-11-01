@@ -7,6 +7,8 @@ export interface Provider {
   url: string;
   key: string;
   model: string;
+  /** Extra request fields for this provider only (e.g. reasoning effort). */
+  extra?: Record<string, unknown>;
 }
 
 export function getProviders(): Provider[] {
@@ -19,11 +21,14 @@ export function getProviders(): Provider[] {
   }
   // Groq (free tier, very fast)
   if (env.GROQ_API_KEY) {
+    const model = env.GROQ_MODEL || "openai/gpt-oss-20b";
     list.push({
       name: "groq",
       url: "https://api.groq.com/openai/v1/chat/completions",
       key: env.GROQ_API_KEY,
-      model: env.GROQ_MODEL || "llama-3.3-70b-versatile",
+      model,
+      // gpt-oss models "think" before answering; keep that short so the answer is not cut off.
+      extra: model.includes("gpt-oss") ? { reasoning_effort: "low" } : undefined,
     });
   }
   // Cloudflare Workers AI (free daily allowance)

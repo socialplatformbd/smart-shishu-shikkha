@@ -39,12 +39,20 @@ export async function GET() {
       const res = await fetch(p.url, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${p.key}` },
-        body: JSON.stringify({ model: p.model, messages: [{ role: "user", content: "Say OK" }], max_tokens: 5 }),
+        body: JSON.stringify({ model: p.model, messages: [{ role: "user", content: "Say OK" }], max_tokens: 200, ...(p.extra ?? {}) }),
         signal: AbortSignal.timeout(8000),
         cache: "no-store",
       });
       let detail = "";
-      if (!res.ok) {
+      let hasContent: boolean | undefined;
+      if (res.ok) {
+        try {
+          const j = await res.json();
+          hasContent = Boolean(String(j?.choices?.[0]?.message?.content ?? "").trim());
+        } catch {
+          hasContent = false;
+        }
+      } else {
         try {
           const j = await res.json();
           detail = scrub(String(j?.error?.message || j?.error?.type || ""));
@@ -52,7 +60,7 @@ export async function GET() {
           detail = "";
         }
       }
-      results.push({ provider: p.name, model: p.model, status: res.status, ok: res.ok, ms: Date.now() - started, detail, hint: hintFor(res.status) });
+      results.push({ provider: p.name, model: p.model, status: res.status, ok: res.ok, hasContent, ms: Date.now() - started, detail, hint: hintFor(res.status) });
     } catch {
       results.push({ provider: p.name, model: p.model, status: 0, ok: false, ms: Date.now() - started, hint: hintFor(0) });
     }

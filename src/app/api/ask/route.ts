@@ -141,14 +141,15 @@ async function callProvider(provider: Provider, messages: ChatMessage[]): Promis
     const res = await fetch(provider.url, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${provider.key}` },
-      body: JSON.stringify({ model: provider.model, messages, temperature: 0.6, max_tokens: 500 }),
+      body: JSON.stringify({ model: provider.model, messages, temperature: 0.6, max_tokens: 1200, ...(provider.extra ?? {}) }),
       signal: controller.signal,
       cache: "no-store",
     });
     if (!res.ok) return "";
     const data = await res.json();
     const text = data?.choices?.[0]?.message?.content;
-    return typeof text === "string" ? text.trim() : "";
+    // Some models put their private thinking in <think> tags: never show that to a child.
+    return typeof text === "string" ? text.replace(/<think>[\s\S]*?<\/think>/g, "").trim() : "";
   } catch {
     return "";
   } finally {
