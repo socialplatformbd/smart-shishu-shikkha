@@ -79,7 +79,7 @@ export const AITeacherView: React.FC<AITeacherViewProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [langPref, setLangPref] = useState<AILangPref>("auto");
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [isDemoMode, setIsDemoMode] = useState(true);
+  const [isDemoMode, setIsDemoMode] = useState<boolean | null>(null); // null = no answer yet
 
   const chatBottomRef = useRef<HTMLDivElement>(null);
   const allMessages = [welcomeMessage, ...messages];
@@ -294,7 +294,7 @@ export const AITeacherView: React.FC<AITeacherViewProps> = ({
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
           <span className="font-bold text-slate-700">
-            {!isOnline ? t.demoBadge : (isDemoMode ? t.demoBadge : t.liveBadge)}
+            {!isOnline ? t.demoBadge : isDemoMode === null ? (isBn ? "প্রশ্ন করো, উত্তর দেব!" : "Ask me anything!") : isDemoMode ? t.demoBadge : t.liveBadge}
           </span>
         </div>
         <button
