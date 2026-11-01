@@ -61,7 +61,7 @@ export const AITeacherView: React.FC<AITeacherViewProps> = ({
       id: "welcome_msg",
       role: "assistant",
       content: isBn
-        ? "নমস্কার ও স্বাগতম! আমি তোমার ডিজিটাল AI শিক্ষক 🤖✨ তোমার মনের যেকোনো প্রশ্ন আমাকে জিজ্ঞাসা করতে পারো—যেমন: 'চাঁদ কেন রাতে আলো দেয়?', 'বাঘ সম্পর্কে বলো', অথবা 'আমাকে যোগ শেখাও'!"
+        ? "আসসালামু আলাইকুম ও স্বাগতম! আমি তোমার ডিজিটাল AI শিক্ষক 🤖✨ তোমার মনের যেকোনো প্রশ্ন আমাকে জিজ্ঞাসা করতে পারো—যেমন: 'চাঁদ কেন রাতে আলো দেয়?', 'বাঘ সম্পর্কে বলো', অথবা 'আমাকে যোগ শেখাও'!"
         : "Hello there! I am your AI Teacher 🤖✨ Ask me anything you are curious about—like 'Why is the sky blue?', 'Tell me about tigers', or 'How to add numbers'!",
       timestamp: 0,
       isDemo: true,

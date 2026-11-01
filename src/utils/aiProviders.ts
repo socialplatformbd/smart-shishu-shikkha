@@ -37,7 +37,7 @@ export function getProviders(): Provider[] {
       name: "cloudflare",
       url: `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions`,
       key: env.CLOUDFLARE_API_TOKEN,
-      model: env.CLOUDFLARE_MODEL || "@cf/meta/llama-3.1-8b-instruct",
+      model: env.CLOUDFLARE_MODEL || "@cf/openai/gpt-oss-20b",
     });
   }
   // Gemini free tier: Google may use free-tier content to improve its products, so it is the LAST choice.

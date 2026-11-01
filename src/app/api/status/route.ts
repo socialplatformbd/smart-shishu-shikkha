@@ -18,7 +18,7 @@ function scrub(text: string): string {
 function hintFor(status: number): string {
   if (status >= 200 && status < 300) return "OK - this provider works.";
   if (status === 401 || status === 403) return "The API key is wrong, revoked or not allowed. Create a NEW key, update the variable in Vercel, then Redeploy.";
-  if (status === 404 || status === 400) return "The model name is probably wrong or retired. Set GROQ_MODEL (or the matching *_MODEL) to a name from groqModels below, then Redeploy.";
+  if (status === 404 || status === 400) return "The model name is probably wrong or retired. Set GROQ_MODEL (or the matching *_MODEL) to a name from groqModels / cloudflareModels below, then Redeploy.";
   if (status === 429) return "Free quota or rate limit reached. Wait a while, or add another provider.";
   if (status === 0) return "Could not reach the provider (network error or timeout).";
   return "Provider returned an unexpected error.";
@@ -85,6 +85,25 @@ export async function GET() {
     }
   }
 
+  // Cloudflare: list the text models available, so a retired model can be replaced.
+  let cloudflareModels: string[] | undefined;
+  const cfId = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const cfToken = process.env.CLOUDFLARE_API_TOKEN;
+  if (cfId && cfToken) {
+    try {
+      const res = await fetch(
+        `https://api.cloudflare.com/client/v4/accounts/${cfId}/ai/models/search?task=Text%20Generation&per_page=50`,
+        { headers: { Authorization: `Bearer ${cfToken}` }, signal: AbortSignal.timeout(8000), cache: "no-store" }
+      );
+      if (res.ok) {
+        const j = await res.json();
+        cloudflareModels = (j?.result ?? []).map((m: { name: string }) => m.name).slice(0, 50);
+      }
+    } catch {
+      cloudflareModels = undefined;
+    }
+  }
+
   const body = {
     configuredProviders: providers.map((p) => p.name),
     note:
@@ -93,6 +112,7 @@ export async function GET() {
         : "Test used a fixed message. No keys or questions are shown here.",
     results,
     groqModels,
+    cloudflareModels,
   };
   cache = { time: now, body };
   return NextResponse.json(body, { headers: NO_STORE });
