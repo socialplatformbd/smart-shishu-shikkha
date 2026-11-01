@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
+import { createHash, timingSafeEqual } from "node:crypto";
 import { getProviders } from "@/utils/aiProviders";
 
 export const dynamic = "force-dynamic";
 
 /*
- * Diagnostic page: open  /api/status  in a browser to see WHY the AI teacher is (not) answering.
+ * PRIVATE diagnostic page for the site owner only.
+ * It is OFF unless the STATUS_SECRET variable is set in Vercel, and it answers only to
+ *   /api/status?key=YOUR_SECRET
+ * Everyone else gets a plain 404, exactly as if the page did not exist.
+ *
+ * Open it to see WHY the AI teacher is (not) answering.
  * It sends a tiny fixed test message ("Say OK"). It never shows keys, questions or answers.
  */
 
@@ -24,7 +30,20 @@ function hintFor(status: number): string {
   return "Provider returned an unexpected error.";
 }
 
-export async function GET() {
+function isOwner(request: Request): boolean {
+  const secret = process.env.STATUS_SECRET;
+  if (!secret || secret.length < 12) return false; // disabled until a long secret is set
+  const given = new URL(request.url).searchParams.get("key") ?? "";
+  // Compare hashes of equal length in constant time.
+  const a = createHash("sha256").update(secret).digest();
+  const b = createHash("sha256").update(given).digest();
+  return timingSafeEqual(a, b);
+}
+
+export async function GET(request: Request) {
+  if (!isOwner(request)) {
+    return new NextResponse("Not found", { status: 404, headers: NO_STORE });
+  }
   const now = Date.now();
   if (cache && now - cache.time < 30_000) {
     return NextResponse.json(cache.body, { headers: NO_STORE });
