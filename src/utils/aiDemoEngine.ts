@@ -48,6 +48,102 @@ const topics: DemoTopic[] = [
     },
   },
   {
+    id: "salah",
+    match: (q) => /(নামাজ|নামায|সালাত|ওযু|অজু)/.test(q) || word(q, "salah", "namaz", "prayer", "prayers", "wudu"),
+    bn: {
+      answer:
+        "🕌 **নামাজ:**\n\n১. প্রতিদিন ৫ ওয়াক্ত নামাজ: ফজর, যোহর, আসর, মাগরিব ও এশা।\n২. নামাজের আগে ওযু করে পরিষ্কার হতে হয়।\n৩. নামাজে আমরা আল্লাহর সাথে কথা বলি এবং তাঁর শুকরিয়া জানাই। ছোটরা মা-বাবার সাথে নামাজ শিখতে পারো। 🤲",
+      simple: "দিনে ৫ বার আল্লাহর সামনে দাঁড়িয়ে নামাজ পড়ি। 🕌",
+      practice: ["দিনে কয় ওয়াক্ত নামাজ?", "মাগরিবের ফরজ কত রাকআত?", "ওযুর আগে কী বলতে হয়?"],
+    },
+    en: {
+      answer:
+        "🕌 **Prayer (Salah):**\n\n1. Five daily prayers: Fajr, Zuhr, Asr, Maghrib and Isha.\n2. Before praying we make wudu to be clean.\n3. In prayer we talk to Allah and thank Him. Children can learn to pray with their parents. 🤲",
+      simple: "We pray five times a day, standing before Allah. 🕌",
+      practice: ["How many prayers are there each day?", "How many fard rakats are in Maghrib?", "What do we say before wudu?"],
+    },
+  },
+  {
+    id: "qurbani",
+    match: (q) => /(কুরবানি|কোরবানি|আযহা|আজহা)/.test(q) || word(q, "qurbani", "adha", "sacrifice"),
+    bn: {
+      answer:
+        "🐑 **ঈদুল আযহা ও কুরবানি:**\n\n১. ঈদুল আযহা হয় ১০ জিলহজ।\n২. নবী ইবরাহিম (আ.) আল্লাহর হুকুম মানতে প্রস্তুত ছিলেন। সেই আনুগত্যের স্মরণে আমরা কুরবানি করি।\n৩. কুরবানির মাংস গরিব, আত্মীয় ও প্রতিবেশীদের সাথে ভাগ করে নিই। 💚",
+      simple: "আল্লাহর হুকুম মানার স্মরণে কুরবানি করি এবং মাংস সবার সাথে ভাগ করি। 🐑",
+      practice: ["ঈদুল আযহা কবে হয়?", "কুরবানির মাংস কাদের দেওয়া হয়?", "ইবরাহিম (আ.) কে ছিলেন?"],
+    },
+    en: {
+      answer:
+        "🐑 **Eid al-Adha and Qurbani:**\n\n1. Eid al-Adha is on 10 Dhul Hijjah.\n2. Prophet Ibrahim (AS) was ready to obey Allah. We remember his obedience through the sacrifice.\n3. We share the meat with poor people, relatives and neighbours. 💚",
+      simple: "We sacrifice to remember obeying Allah, and we share the meat with everyone. 🐑",
+      practice: ["When is Eid al-Adha?", "Who gets the Qurbani meat?", "Who was Ibrahim (AS)?"],
+    },
+  },
+  {
+    id: "roza",
+    match: (q) => /(রোজা|রমজান|রমযান|ঈদ|সাহরি|ইফতার)/.test(q) || word(q, "ramadan", "fasting", "roza", "eid", "iftar"),
+    bn: {
+      answer:
+        "🌙 **রমজান ও রোজা:**\n\n১. রমজান মাসে ভোর থেকে সূর্যাস্ত পর্যন্ত খাওয়া-দাওয়া থেকে বিরত থাকাকে রোজা বলে।\n২. ভোরে খাওয়াকে সাহরি এবং সন্ধ্যায় রোজা ভাঙাকে ইফতার বলে।\n৩. রমজানের পরে ১ শাওয়াল ঈদুল ফিতর। বড় হলে রোজা ফরজ হয়। 🎉",
+      simple: "রমজানে সারাদিন না খেয়ে থাকি, সন্ধ্যায় ইফতার করি। 🌙",
+      practice: ["রোজা কোন মাসে রাখা হয়?", "সাহরি কখন খাওয়া হয়?", "ঈদুল ফিতর কবে হয়?"],
+    },
+    en: {
+      answer:
+        "🌙 **Ramadan and fasting:**\n\n1. In Ramadan we do not eat or drink from dawn until sunset. This is fasting.\n2. The meal before dawn is Suhoor, and breaking the fast at sunset is Iftar.\n3. After Ramadan comes Eid al-Fitr on 1 Shawwal. Fasting becomes obligatory when a person grows up. 🎉",
+      simple: "In Ramadan we do not eat all day, and we break the fast in the evening. 🌙",
+      practice: ["In which month do Muslims fast?", "When do we eat Suhoor?", "When is Eid al-Fitr?"],
+    },
+  },
+  {
+    id: "prophets",
+    match: (q) => /(নবীদের|আদম|নূহ|ইবরাহিম|ইব্রাহিম|মূসা|ঈসা|ইউসুফ|ইউনুস|সুলাইমান)/.test(q) || word(q, "prophets", "adam", "ibrahim", "abraham", "musa", "moses", "noah", "nuh", "yusuf", "joseph", "yunus", "jesus"),
+    bn: {
+      answer:
+        "🌟 **নবী-রাসূলগণ:**\n\n১. আল্লাহ মানুষকে সঠিক পথ দেখাতে যুগে যুগে নবী পাঠিয়েছেন। কুরআনে ২৫ জন নবীর নাম আছে।\n২. প্রথম নবী আদম (আ.), শেষ নবী মুহাম্মাদ (সা.)।\n৩. 'ইসলাম' ট্যাবের 'নবীদের গল্প' অংশে নূহ, ইবরাহিম, ইউসুফ, মূসা সহ অনেকের গল্প পড়তে পারো। 📖",
+      simple: "আল্লাহ ভালো পথ দেখাতে অনেক নবী পাঠিয়েছেন। প্রথম আদম (আ.), শেষ মুহাম্মাদ (সা.)। 🌟",
+      practice: ["প্রথম নবী কে ছিলেন?", "বড় নৌকা বানিয়েছিলেন কোন নবী?", "শেষ নবী কে?"],
+    },
+    en: {
+      answer:
+        "🌟 **The Prophets:**\n\n1. Allah sent prophets through the ages to guide people. The names of 25 prophets are in the Quran.\n2. The first prophet was Adam (AS) and the last is Muhammad (PBUH).\n3. Read the stories of Nuh, Ibrahim, Yusuf, Musa and more in the 'Islam' tab. 📖",
+      simple: "Allah sent many prophets to show the good way. First Adam (AS), last Muhammad (PBUH). 🌟",
+      practice: ["Who was the first prophet?", "Which prophet built the great ark?", "Who is the last prophet?"],
+    },
+  },
+  {
+    id: "nabi",
+    match: (q) => /(নবী|রাসূল|মুহাম্মদ|মুহাম্মাদ|মক্কা|মদিনা|কাবা|হিজরত)/.test(q) || word(q, "prophet", "muhammad", "makkah", "mecca", "madinah", "kaaba"),
+    bn: {
+      answer:
+        "🌟 **প্রিয় নবী মুহাম্মাদ (সা.):**\n\n১. তিনি আল্লাহর সর্বশেষ নবী। মক্কায় জন্মগ্রহণ করেন।\n২. সত্যবাদিতার জন্য তাঁকে 'আল-আমিন' (বিশ্বস্ত) বলা হতো।\n৩. ৪০ বছর বয়সে প্রথম ওহি আসে এবং পরে তিনি মদিনায় হিজরত করেন। তিনি সবাইকে ক্ষমা ও ভালোবাসার শিক্ষা দিয়েছেন। 💚",
+      simple: "নবীজি (সা.) সত্য কথা বলতেন, সবাইকে ভালোবাসতেন ও ক্ষমা করতেন। 💚",
+      practice: ["নবীজি (সা.) কোথায় জন্মেছিলেন?", "'আল-আমিন' মানে কী?", "হিজরত কী?"],
+    },
+    en: {
+      answer:
+        "🌟 **Our beloved Prophet Muhammad (PBUH):**\n\n1. He is the last prophet of Allah, born in Makkah.\n2. He was called 'Al-Amin' (the Trustworthy) because he was so honest.\n3. He received the first revelation at 40 and later migrated to Madinah. He taught everyone forgiveness and love. 💚",
+      simple: "The Prophet (PBUH) told the truth, loved everyone and forgave others. 💚",
+      practice: ["Where was the Prophet (PBUH) born?", "What does 'Al-Amin' mean?", "What is the Hijrah?"],
+    },
+  },
+  {
+    id: "quran",
+    match: (q) => /(কুরআন|কোরআন|সূরা|সুরা|আয়াত)/.test(q) || word(q, "quran", "koran", "surah", "ayah"),
+    bn: {
+      answer:
+        "📗 **আল-কুরআন:**\n\n১. কুরআন আল্লাহর কালাম, মুসলমানদের শেষ আসমানি কিতাব।\n২. কুরআনে ১১৪টি সূরা ও ৩০টি পারা আছে।\n৩. প্রথম সূরা আল-ফাতিহা। সঠিক তিলাওয়াত শিক্ষকের কাছ থেকে শুনে শুনে শিখতে হয়। 📖",
+      simple: "কুরআন আল্লাহর কথা। এতে ১১৪টি সূরা আছে। 📗",
+      practice: ["কুরআনে কয়টি সূরা?", "কুরআনের প্রথম সূরা কোনটি?", "সূরা ইখলাসে কয়টি আয়াত?"],
+    },
+    en: {
+      answer:
+        "📗 **The Quran:**\n\n1. The Quran is the word of Allah, the final holy book for Muslims.\n2. It has 114 surahs and 30 parts.\n3. The first surah is Al-Fatiha. The correct recitation should be learned by listening to a teacher. 📖",
+      simple: "The Quran is Allah's word. It has 114 surahs. 📗",
+      practice: ["How many surahs are in the Quran?", "Which is the first surah?", "How many verses are in Surah Al-Ikhlas?"],
+    },
+  },
+  {
     id: "sky",
     match: (q) => /আকাশ/.test(q) || word(q, "sky"),
     bn: {
@@ -181,13 +277,13 @@ function fallbackBlock(isBn: boolean): LangBlock {
   return isBn
     ? {
         answer:
-          "🙈 **এই প্রশ্নের উত্তর এখন আমার কাছে নেই।**\n\nআমি এখন সহজ অফলাইন মোডে আছি, তাই কয়েকটা বিষয়ই বলতে পারি: চাঁদ-সূর্য, বৃষ্টি, আকাশ, বাঘ, সিংহ, হাতি, গণিত আর হাত ধোয়া। 🌟\n\nতুমি চাইলে এই বিষয়গুলো জিজ্ঞাসা করতে পারো, অথবা বড়দের সাথে আলোচনা করে নতুন কিছু জেনে নিতে পারো!",
+          "🙈 **এই প্রশ্নের উত্তর এখন আমার কাছে নেই।**\n\nআমি এখন সহজ অফলাইন মোডে আছি, তাই কয়েকটা বিষয়ই বলতে পারি: চাঁদ-সূর্য, বৃষ্টি, আকাশ, বাঘ, সিংহ, হাতি, গণিত, হাত ধোয়া, নামাজ, রোজা, নবীজি (সা.) আর কুরআন। 🌟\n\nতুমি চাইলে এই বিষয়গুলো জিজ্ঞাসা করতে পারো, অথবা বড়দের সাথে আলোচনা করে নতুন কিছু জেনে নিতে পারো!",
         simple: "এই প্রশ্নটা আমি এখনো জানি না 🙈 বড়দের জিজ্ঞাসা করো, আর চাঁদ, বৃষ্টি বা বাঘের কথা আমাকে জিজ্ঞাসা করো!",
         practice: ["চাঁদ কেন রাতে আলো দেয়?", "বৃষ্টি কীভাবে হয়?", "বাঘ সম্পর্কে কিছু বলো"],
       }
     : {
         answer:
-          "🙈 **I don't know the answer to that one yet.**\n\nI am in simple offline mode right now, so I can only talk about a few things: the moon and sun, rain, the sky, tigers, lions, elephants, math and washing hands. 🌟\n\nYou can ask me about those, or talk with a grown-up to discover something new!",
+          "🙈 **I don't know the answer to that one yet.**\n\nI am in simple offline mode right now, so I can only talk about a few things: the moon and sun, rain, the sky, tigers, lions, elephants, math, washing hands, prayer, fasting, the Prophet (PBUH) and the Quran. 🌟\n\nYou can ask me about those, or talk with a grown-up to discover something new!",
         simple: "I don't know that one yet 🙈 Ask a grown-up, and ask me about the moon, rain or tigers!",
         practice: ["Why does the moon shine at night?", "How does rain fall?", "Tell me about tigers"],
       };

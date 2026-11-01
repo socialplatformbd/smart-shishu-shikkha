@@ -3,20 +3,7 @@
 import React from "react";
 import { translations } from "@/data/translations";
 import { Language, NavTab } from "@/types";
-import {
-  BookOpen,
-  Languages,
-  Calculator,
-  Compass,
-  Gamepad2,
-  HelpCircle,
-  Sparkles,
-  Award,
-  Info,
-  ChevronRight,
-  WifiOff,
-  CheckCircle2,
-} from "lucide-react";
+import { BookOpen, Languages, Calculator, Compass, Gamepad2, HelpCircle, Sparkles, Award, Info, ChevronRight, WifiOff, CheckCircle2, Moon } from "lucide-react";
 import { sounds } from "@/utils/audio";
 
 interface HomeDashboardProps {
@@ -86,6 +73,16 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
       bgGradient: "from-teal-50 to-cyan-50 border-teal-200 hover:border-teal-400",
       pillBg: "bg-teal-100 text-teal-800",
       accentColor: "text-teal-600",
+    },
+    {
+      id: "islam" as NavTab,
+      title: t.modules.islamTitle,
+      desc: t.modules.islamDesc,
+      icon: <Moon className="w-8 h-8 text-emerald-600" />,
+      badge: lang === "bn" ? "ঈমান, নামাজ ও দোয়া" : "Faith, Prayer & Duas",
+      bgGradient: "from-emerald-50 to-green-50 border-emerald-200 hover:border-emerald-400",
+      pillBg: "bg-emerald-100 text-emerald-800",
+      accentColor: "text-emerald-700",
     },
     {
       id: "games" as NavTab,

@@ -3,18 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { NavTab, Language } from "@/types";
 import { translations } from "@/data/translations";
-import {
-  Home,
-  BookOpen,
-  Languages,
-  Calculator,
-  Compass,
-  Gamepad2,
-  HelpCircle,
-  Sparkles,
-  Award,
-  Info,
-} from "lucide-react";
+import { Home, BookOpen, Languages, Calculator, Compass, Gamepad2, HelpCircle, Sparkles, Award, Info, Moon } from "lucide-react";
 import { sounds } from "@/utils/audio";
 
 interface BottomNavProps {
@@ -42,6 +31,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
     { id: "english", label: t.english, icon: <Languages className="w-5 h-5" />, color: "text-indigo-600" },
     { id: "math", label: t.math, icon: <Calculator className="w-5 h-5" />, color: "text-amber-600" },
     { id: "gk", label: t.gk, icon: <Compass className="w-5 h-5" />, color: "text-teal-600" },
+    { id: "islam", label: t.islam, icon: <Moon className="w-5 h-5" />, color: "text-emerald-700" },
     { id: "games", label: t.games, icon: <Gamepad2 className="w-5 h-5" />, color: "text-purple-600" },
     { id: "quiz", label: t.quiz, icon: <HelpCircle className="w-5 h-5" />, color: "text-blue-600" },
     { id: "ai", label: t.ai, icon: <Sparkles className="w-5 h-5" />, color: "text-amber-500" },

@@ -103,3 +103,9 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Arabic text (duas, surahs): uses the phone's own Arabic font, so nothing is downloaded */
+.font-arabic {
+  font-family: 'Noto Naskh Arabic', 'Amiri', 'Scheherazade New', 'Droid Arabic Naskh', 'Traditional Arabic', 'Geeza Pro', serif;
+  line-height: 2.1;
+}

@@ -6,6 +6,7 @@ export type NavTab =
   | "english" 
   | "math" 
   | "gk" 
+  | "islam" 
   | "games" 
   | "quiz" 
   | "ai" 
@@ -65,7 +66,7 @@ export interface GKCard {
 
 export interface QuizQuestion {
   id: string;
-  category: "bengali" | "english" | "math" | "gk" | "mixed";
+  category: "bengali" | "english" | "math" | "gk" | "islamic" | "mixed";
   difficulty: "easy" | "medium" | "hard";
   questionBn: string;
   questionEn: string;

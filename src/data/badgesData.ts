@@ -38,6 +38,15 @@ export const allBadges: BadgeInfo[] = [
     unlocked: false,
   },
   {
+    id: "islam_learner",
+    titleBn: "ইসলামি শিক্ষার্থী",
+    titleEn: "Islamic Learner",
+    descBn: "ইসলামি শিক্ষার একটি পাঠ শেষ করার জন্য।",
+    descEn: "Finished a lesson in Islamic Learning.",
+    icon: "🕌",
+    unlocked: false,
+  },
+  {
     id: "quiz_starter",
     titleBn: "কুইজ অভিযাত্রী",
     titleEn: "Quiz Starter",

@@ -24,7 +24,7 @@ interface QuizCenterProps {
 
 export const QuizCenter: React.FC<QuizCenterProps> = ({ lang, onRecordQuiz }) => {
   const t = translations[lang].quiz;
-  const [selectedCat, setSelectedCat] = useState<"all" | "bengali" | "english" | "math" | "gk">("all");
+  const [selectedCat, setSelectedCat] = useState<"all" | "bengali" | "english" | "math" | "gk" | "islamic">("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -66,7 +66,7 @@ export const QuizCenter: React.FC<QuizCenterProps> = ({ lang, onRecordQuiz }) =>
     }
   };
 
-  const handleRestartQuiz = (category?: "all" | "bengali" | "english" | "math" | "gk") => {
+  const handleRestartQuiz = (category?: "all" | "bengali" | "english" | "math" | "gk" | "islamic") => {
     sounds.playTap();
     if (category) setSelectedCat(category);
     setQuestionOrder(shuffleQuestions(quizQuestions));
@@ -139,6 +139,14 @@ export const QuizCenter: React.FC<QuizCenterProps> = ({ lang, onRecordQuiz }) =>
             }`}
           >
             {lang === "bn" ? "জ্ঞান 🌍" : "GK 🌍"}
+          </button>
+          <button
+            onClick={() => handleRestartQuiz("islamic")}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              selectedCat === "islamic" ? "bg-white text-sky-900 shadow-sm" : "text-white hover:bg-white/10"
+            }`}
+          >
+            {lang === "bn" ? "ইসলাম 🌙" : "Islam 🌙"}
           </button>
         </div>
       </div>
