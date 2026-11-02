@@ -15,6 +15,28 @@ class SoundFX {
     }
   }
 
+  // A single musical note (used by the colour-memory game)
+  playNote(frequency: number, durationMs = 400) {
+    try {
+      this.initCtx();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      const t = this.ctx.currentTime;
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(frequency, t);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(0.25, t + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + durationMs / 1000);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(t);
+      osc.stop(t + durationMs / 1000 + 0.02);
+    } catch {
+      // safe fallback
+    }
+  }
+
   // Gentle pop / tap sound
   playTap() {
     try {

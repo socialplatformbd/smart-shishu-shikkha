@@ -89,7 +89,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
       title: t.modules.gamesTitle,
       desc: t.modules.gamesDesc,
       icon: <Gamepad2 className="w-8 h-8 text-purple-500" />,
-      badge: lang === "bn" ? "৩টি শিক্ষামূলক গেম" : "3 Educational Games",
+      badge: lang === "bn" ? "৯টি শিক্ষামূলক গেম" : "9 Educational Games",
       bgGradient: "from-purple-50 to-fuchsia-50 border-purple-200 hover:border-purple-400",
       pillBg: "bg-purple-100 text-purple-800",
       accentColor: "text-purple-600",

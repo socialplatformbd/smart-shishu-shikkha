@@ -5,6 +5,7 @@ import { Language } from "@/types";
 import { memoryCardPairs, pictureMatchItems, wordScrambleItems } from "@/data/gamesData";
 import { RotateCcw } from "lucide-react";
 import { sounds } from "@/utils/audio";
+import { BrainGames } from "@/components/modules/BrainGames";
 import confetti from "canvas-confetti";
 
 interface MemoryCardState {
@@ -21,7 +22,7 @@ interface GamesCenterProps {
 }
 
 export const GamesCenter: React.FC<GamesCenterProps> = ({ lang, onAddStars }) => {
-  const [activeGame, setActiveGame] = useState<"memory" | "picture" | "spelling">("memory");
+  const [activeGame, setActiveGame] = useState<"memory" | "picture" | "spelling" | "brain">("memory");
 
   // Game 1: Memory Match State
   const [memoryDeck, setMemoryDeck] = useState<MemoryCardState[]>([]);
@@ -173,8 +174,8 @@ export const GamesCenter: React.FC<GamesCenterProps> = ({ lang, onAddStars }) =>
           </h2>
           <p className="text-purple-100 text-xs sm:text-sm mt-1">
             {lang === "bn"
-              ? "খেলে খেলে স্মৃতিশক্তি, বর্ণ চেনা ও বানান চর্চা করি।"
-              : "Boost memory, letter recognition and spelling with joyful games."}
+              ? "খেলে খেলে স্মৃতিশক্তি, মনোযোগ, বর্ণ চেনা, বানান ও গণনা চর্চা করি।"
+              : "Boost memory, focus, letters, spelling and counting with joyful games."}
           </p>
         </div>
 
@@ -204,8 +205,19 @@ export const GamesCenter: React.FC<GamesCenterProps> = ({ lang, onAddStars }) =>
           >
             {lang === "bn" ? "৩. শব্দ গঠন ধাঁধা 🧩" : "3. Word Builder 🧩"}
           </button>
+          <button
+            onClick={() => { sounds.playTap(); setActiveGame("brain"); }}
+            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeGame === "brain" ? "bg-white text-purple-900 shadow-sm" : "text-white hover:bg-white/10"
+            }`}
+          >
+            {lang === "bn" ? "৪. মেধা-বিকাশ 🧠" : "4. Brain Boost 🧠"}
+          </button>
         </div>
       </div>
+
+      {/* Brain-boost games (6 games) */}
+      {activeGame === "brain" && <BrainGames lang={lang} onAddStars={onAddStars} />}
 
       {/* Game 1: Memory Match */}
       {activeGame === "memory" && (

@@ -107,3 +107,5 @@ npm run build && npm start   # production build (the service worker only registe
 - **Safety layers:** (1) the question is checked on the server and on the device *before* it is sent: violence, sexual content, drugs, abuse, self-harm, prompt-injection and personal data (phone, e-mail, address, password) are blocked with a kind message and never reach the AI; (2) a strict child-only system prompt; (3) the AI answer is checked again and replaced if unsuitable; links are always removed.
 - **No external fonts or scripts** are loaded, so no visitor IP address is sent to third parties by the page itself.
 - A word-list filter is never perfect. Parents should stay nearby for young children.
+
+- **Brain-Boost Games (মেধা-বিকাশ গেম):** Colour Memory (Simon), What is Missing?, Find the Odd One, Number Order, First Letter (phonics) and Read the Clock. Only the best score is saved, on the child's own device.
