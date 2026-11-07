@@ -25,12 +25,13 @@ type SetId = "bnv" | "bnc" | "enu" | "enl" | "dbn" | "den";
 const FONT_BN = "'Noto Sans Bengali','Hind Siliguri','Kalpurush','Nirmala UI','Vrinda',sans-serif";
 const FONT_LAT = "'Trebuchet MS','Arial Rounded MT Bold',Arial,sans-serif";
 
-// Marks that only exist attached to another letter are not traced alone.
+// These three signs are drawn as simple shapes. Phone fonts add an empty dotted circle when such a
+// mark is drawn alone, and the child would have to trace that circle too.
 const SIGNS = ["ং", "ঃ", "ঁ"];
 
 const SETS: { id: SetId; bn: string; en: string; chars: string[]; font: string }[] = [
   { id: "bnv", bn: "স্বরবর্ণ", en: "Bengali vowels", chars: bengaliVowels.map((x) => x.letter), font: FONT_BN },
-  { id: "bnc", bn: "ব্যঞ্জনবর্ণ", en: "Bengali consonants", chars: bengaliConsonants.map((x) => x.letter).filter((c) => !SIGNS.includes(c)), font: FONT_BN },
+  { id: "bnc", bn: "ব্যঞ্জনবর্ণ", en: "Bengali consonants", chars: bengaliConsonants.map((x) => x.letter), font: FONT_BN },
   { id: "enu", bn: "A–Z বড় হাতের", en: "A–Z capital", chars: englishAlphabet.map((x) => x.letter), font: FONT_LAT },
   { id: "enl", bn: "a–z ছোট হাতের", en: "a–z small", chars: englishAlphabet.map((x) => x.letter.toLowerCase()), font: FONT_LAT },
   { id: "dbn", bn: "বাংলা সংখ্যা ০–৯", en: "Bengali digits", chars: ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"], font: FONT_BN },
@@ -38,6 +39,33 @@ const SETS: { id: SetId; bn: string; en: string; chars: string[]; font: string }
 ];
 
 const CANVAS = 600; // internal drawing resolution (scaled by CSS)
+
+/** ং (a dot), ঃ (two dots) and ঁ (crescent with a dot) as clean shapes. */
+function drawSign(ctx: CanvasRenderingContext2D, size: number, ch: string, mode: "visual" | "mask") {
+  const visual = mode === "visual";
+  ctx.save();
+  ctx.fillStyle = visual ? "#ddd6fe" : "#000";
+  ctx.strokeStyle = visual ? "#ddd6fe" : "#000";
+  ctx.lineCap = "round";
+  const dot = (cx: number, cy: number, r: number) => {
+    ctx.beginPath();
+    ctx.arc(cx * size, cy * size, r * size, 0, Math.PI * 2);
+    ctx.fill();
+  };
+  if (ch === "ং") {
+    dot(0.5, 0.5, 0.09);
+  } else if (ch === "ঃ") {
+    dot(0.5, 0.36, 0.07);
+    dot(0.5, 0.64, 0.07);
+  } else {
+    ctx.lineWidth = size * (visual ? 0.075 : 0.1);
+    ctx.beginPath();
+    ctx.arc(0.5 * size, 0.46 * size, 0.2 * size, 0, Math.PI, false); // lower half circle = a cup
+    ctx.stroke();
+    dot(0.5, 0.48, 0.055);
+  }
+  ctx.restore();
+}
 
 /** Draws one glyph centred and auto-fitted, so every font and letter fills the box the same way. */
 function drawGlyph(
@@ -47,6 +75,10 @@ function drawGlyph(
   font: string,
   mode: "visual" | "mask"
 ) {
+  if (SIGNS.includes(ch)) {
+    drawSign(ctx, size, ch, mode);
+    return;
+  }
   ctx.save();
   ctx.textAlign = "left";
   ctx.textBaseline = "alphabetic";
@@ -367,6 +399,17 @@ export const WritingModule: React.FC<WritingModuleProps> = ({ lang, onLessonComp
             className="absolute inset-0 w-full h-full cursor-crosshair"
           />
         </div>
+
+        {SIGNS.includes(ch) && (
+          <p className="text-center text-xs font-semibold text-fuchsia-800 bg-fuchsia-50 border border-fuchsia-200 rounded-xl px-3 py-2">
+            💡{" "}
+            {ch === "ং"
+              ? isBn ? "এটা একটা ফোঁটা। ধূসর গোল দাগের ওপর আঙুল ছোঁয়াও।" : "This is one dot. Touch the grey dot with your finger."
+              : ch === "ঃ"
+                ? isBn ? "দুটো ফোঁটা দাও: ওপরে একটা, নিচে একটা।" : "Make two dots: one on top, one below."
+                : isBn ? "আগে বাটির মতো বাঁকা দাগ টানো, তারপর ভেতরে একটা ফোঁটা দাও।" : "First draw the curved bowl, then put a dot inside."}
+          </p>
+        )}
 
         {result && (
           <div
