@@ -24,6 +24,7 @@ import { Footer } from "@/components/Footer";
 import { BengaliModule } from "@/components/modules/BengaliModule";
 import { EnglishModule } from "@/components/modules/EnglishModule";
 import { MathModule } from "@/components/modules/MathModule";
+import { WritingModule } from "@/components/modules/WritingModule";
 import { IslamicModule } from "@/components/modules/IslamicModule";
 import { GKModule } from "@/components/modules/GKModule";
 import { GamesCenter } from "@/components/modules/GamesCenter";
@@ -109,7 +110,7 @@ export default function HomePage() {
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const tabParam = urlParams.get("tab") as NavTab | null;
-      if (tabParam && ["bengali", "english", "math", "gk", "islam", "games", "quiz", "ai", "progress", "about"].includes(tabParam)) {
+      if (tabParam && ["bengali", "english", "math", "gk", "islam", "write", "games", "quiz", "ai", "progress", "about"].includes(tabParam)) {
         setActiveTab(tabParam);
       }
     } catch {
@@ -259,6 +260,15 @@ export default function HomePage() {
         {/* Islamic learning */}
         {activeTab === "islam" && (
           <IslamicModule
+            lang={lang}
+            onLessonComplete={handleLessonComplete}
+            completedLessons={progress.completedLessons}
+          />
+        )}
+
+        {/* Learn to write */}
+        {activeTab === "write" && (
+          <WritingModule
             lang={lang}
             onLessonComplete={handleLessonComplete}
             completedLessons={progress.completedLessons}

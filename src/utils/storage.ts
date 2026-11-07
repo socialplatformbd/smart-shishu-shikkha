@@ -35,6 +35,7 @@ function computeBadges(p: UserProgress): string[] {
   if (p.completedLessons.some((id) => id.startsWith("en_"))) earned.add("english_star");
   if (p.completedLessons.some((id) => id.startsWith("math_"))) earned.add("math_wizard");
   if (p.completedLessons.some((id) => id.startsWith("islam_"))) earned.add("islam_learner");
+  if (p.completedLessons.some((id) => id.startsWith("write_"))) earned.add("writer_star");
   if (p.quizzesTaken >= 1) earned.add("quiz_starter");
   if (p.highestQuizScore >= 100) earned.add("perfect_score");
   if (p.completedLessons.length >= 5) earned.add("star_learner");

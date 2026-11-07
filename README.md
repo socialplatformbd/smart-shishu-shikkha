@@ -109,3 +109,5 @@ npm run build && npm start   # production build (the service worker only registe
 - A word-list filter is never perfect. Parents should stay nearby for young children.
 
 - **Brain-Boost Games (মেধা-বিকাশ গেম):** Colour Memory (Simon), What is Missing?, Find the Odd One, Number Order, First Letter (phonics) and Read the Clock. Only the best score is saved, on the child's own device.
+
+- **Learn to Write (অক্ষর লেখা শেখা):** trace Bengali vowels/consonants, A–Z, a–z and digits with a finger; the app checks the writing on-device and gives stars. Nothing is sent or saved.

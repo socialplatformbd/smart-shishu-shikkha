@@ -47,6 +47,15 @@ export const allBadges: BadgeInfo[] = [
     unlocked: false,
   },
   {
+    id: "writer_star",
+    titleBn: "ছোট্ট লেখক",
+    titleEn: "Little Writer",
+    descBn: "আঙুল দিয়ে একটি অক্ষর সুন্দরভাবে লেখার জন্য।",
+    descEn: "Wrote a letter nicely with your finger.",
+    icon: "✍️",
+    unlocked: false,
+  },
+  {
     id: "quiz_starter",
     titleBn: "কুইজ অভিযাত্রী",
     titleEn: "Quiz Starter",

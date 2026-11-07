@@ -7,6 +7,7 @@ export type NavTab =
   | "math" 
   | "gk" 
   | "islam" 
+  | "write" 
   | "games" 
   | "quiz" 
   | "ai" 

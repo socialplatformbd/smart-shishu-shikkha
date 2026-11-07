@@ -3,7 +3,7 @@
 import React from "react";
 import { translations } from "@/data/translations";
 import { Language, NavTab } from "@/types";
-import { BookOpen, Languages, Calculator, Compass, Gamepad2, HelpCircle, Sparkles, Award, Info, ChevronRight, WifiOff, CheckCircle2, Moon } from "lucide-react";
+import { BookOpen, Languages, Calculator, Compass, Gamepad2, HelpCircle, Sparkles, Award, Info, ChevronRight, WifiOff, CheckCircle2, Moon, Pencil } from "lucide-react";
 import { sounds } from "@/utils/audio";
 
 interface HomeDashboardProps {
@@ -83,6 +83,16 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
       bgGradient: "from-emerald-50 to-green-50 border-emerald-200 hover:border-emerald-400",
       pillBg: "bg-emerald-100 text-emerald-800",
       accentColor: "text-emerald-700",
+    },
+    {
+      id: "write" as NavTab,
+      title: t.modules.writeTitle,
+      desc: t.modules.writeDesc,
+      icon: <Pencil className="w-8 h-8 text-fuchsia-600" />,
+      badge: lang === "bn" ? "আঙুল দিয়ে আঁকা" : "Finger tracing",
+      bgGradient: "from-fuchsia-50 to-purple-50 border-fuchsia-200 hover:border-fuchsia-400",
+      pillBg: "bg-fuchsia-100 text-fuchsia-800",
+      accentColor: "text-fuchsia-700",
     },
     {
       id: "games" as NavTab,
